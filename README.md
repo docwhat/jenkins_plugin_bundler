@@ -1,8 +1,10 @@
+[![Build Status](https://travis-ci.org/docwhat/jenkins_plugin_bundler.svg?branch=master)](https://travis-ci.org/docwhat/jenkins_plugin_bundler)
+
 # JenkinsPluginBundler
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jenkins_plugin_bundler`. To experiment with that code, run `bin/console` for an interactive prompt.
+The Jenkins Plugin Bundler is a simple wrapper around the Jenkins Update Center to figure out dependencies and allow you to download them.
 
-TODO: Delete this and the text above, and describe your gem
+I use this for creating Jenkins docker containers that have all the plugins pre-installed.
 
 ## Installation
 

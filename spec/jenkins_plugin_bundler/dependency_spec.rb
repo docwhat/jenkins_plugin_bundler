@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'jenkins_plugin_bundler/dependency'
 
-RSpec.describe Dependency do
+RSpec.describe JenkinsPluginBundler::Dependency do
   subject { described_class.new name, version }
   let(:name) { %w(joe nancy roger).sample }
   let(:version) { ['~> 1.0', '!= 1.0.2'] }

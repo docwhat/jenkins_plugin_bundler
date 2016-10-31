@@ -1,20 +1,23 @@
 # frozen_string_literal: true
 require 'jenkins_plugin_bundler/plugin_catalog'
 
-RSpec.describe PluginCatalog do
+RSpec.describe JenkinsPluginBundler::PluginCatalog do
   subject(:catalog) { described_class.new fixture_path('update-center.json') }
+  def mkdep(name, version_constraint)
+    JenkinsPluginBundler::Dependency.new(name, version_constraint)
+  end
 
   it 'contains plugins' do
-    expect(subject.values.sample).to be_a Plugin
+    expect(subject.values.sample).to be_a JenkinsPluginBundler::Plugin
   end
 
   context 'with a dependency list' do
     subject { super().resolve deps }
     let(:deps) do
       [
-        Dependency.new('timestamper', []),
-        Dependency.new('github-organization-folder', '>= 1'),
-        Dependency.new('workflow-api', '~> 2.0')
+        mkdep('timestamper', []),
+        mkdep('github-organization-folder', '>= 1'),
+        mkdep('workflow-api', '~> 2.0')
       ].shuffle
     end
 
@@ -37,8 +40,8 @@ RSpec.describe PluginCatalog do
     subject { -> { catalog.resolve deps } }
     let(:deps) do
       [
-        Dependency.new('workflow-api', '~> 2.0'),
-        Dependency.new('workflow-step-api', '~> 1.0')
+        mkdep('workflow-api', '~> 2.0'),
+        mkdep('workflow-step-api', '~> 1.0')
       ]
     end
 
@@ -54,7 +57,7 @@ RSpec.describe PluginCatalog do
     subject { -> { catalog.resolve deps } }
     let(:deps) do
       [
-        Dependency.new('not-a-real-plugin', '~> 2.0')
+        mkdep('not-a-real-plugin', '~> 2.0')
       ]
     end
 
@@ -67,7 +70,7 @@ RSpec.describe PluginCatalog do
     subject { -> { catalog.resolve deps } }
     let(:deps) do
       [
-        Dependency.new('view-job-filters', [])
+        mkdep('view-job-filters', [])
       ]
     end
 

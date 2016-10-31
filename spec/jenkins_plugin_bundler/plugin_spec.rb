@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'jenkins_plugin_bundler/plugin'
 
-RSpec.describe Plugin do
+RSpec.describe JenkinsPluginBundler::Plugin do
   context 'with timestamper' do
     subject { described_class.new json_fixture('timestamper') }
 
@@ -31,7 +31,7 @@ RSpec.describe Plugin do
       end
 
       it 'should be a Dependency' do
-        expect(subject.first).to be_a Dependency
+        expect(subject.first).to be_a JenkinsPluginBundler::Dependency
       end
     end
   end
